@@ -33,9 +33,12 @@
     --foreground: var(--fiord-900);
 
     --border: var(--fiord-600);
+    --button: var(--fiord-600);
     --input: var(--fiord-200);
     --ring: var(--fiord-800);
     --text: var(--fiord-1000);
+
+    --radius: 0.5rem;
   }
 
   .dark {
@@ -46,9 +49,12 @@
     --foreground: var(--fiord-50);
 
     --border: var(--fiord-600);
+    --button: var(--fiord-600);
     --input: var(--fiord-200);
     --ring: var(--fiord-800);
     --text: var(--fiord-50);
+
+    --radius: 0.5rem;
   }
 }
 @layer components {
