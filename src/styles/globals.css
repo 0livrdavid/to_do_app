@@ -32,27 +32,25 @@
     --background: var(--fiord-100);
     --foreground: var(--fiord-900);
 
+    --primary: var(--fiord-900);
+    --primary-foreground: var(--fiord-50);
+
+    --secondary: var(--fiord-300);
+    --secondary-foreground: var(--fiord-950);
+
+    --destructive: var(--fiord-800);
+    --destructive-foreground: var(--fiord-50);
+
+    --ghost-background: transparent;
+    --ghost-foreground: var(--fiord-500);
+
+    --link: var(--fiord-500);
+    --link-hover: var(--fiord-400);
+
     --border: var(--fiord-600);
-    --button: var(--fiord-600);
     --input: var(--fiord-200);
     --ring: var(--fiord-800);
     --text: var(--fiord-1000);
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --body-background: var(--fiord-950);
-    --body-foreground: var(--fiord-50);
-    
-    --background: var(--fiord-900);
-    --foreground: var(--fiord-50);
-
-    --border: var(--fiord-600);
-    --button: var(--fiord-600);
-    --input: var(--fiord-200);
-    --ring: var(--fiord-800);
-    --text: var(--fiord-50);
 
     --radius: 0.5rem;
   }
