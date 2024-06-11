@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react";
 import HrSign from "@/components/hr_text"
 import signup from "@/api/axios/users/signup";
-import { setToken } from "@/api/axios/users/token";
-import { SignupResponse } from "@/api/interface/signup";
+import { SignupResponse } from "@/api/interfaces/users/signup";
+import { useLoading } from '@rest-hooks/hooks';
 
 interface SignProps {
   setSign: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,9 +22,9 @@ export default function Signup({ setSign, setUsernameSignIn }: SignProps) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  async function handleSignup(e: React.FormEvent<HTMLFormElement>) {
+  const [handleSignup, isLoadingSignup] = useLoading(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError('As senhas não conferem');
+    setError('');
   
     if (password !== confirmPassword) {
       setError('As senhas não conferem');
@@ -48,7 +48,7 @@ export default function Signup({ setSign, setUsernameSignIn }: SignProps) {
     } catch (error) {
       setError(`Um erro ocorreu durante o cadastro: ${error}`);
     }
-  }
+  })
 
   return (
     <div className="mx-auto max-w-md space-y-6 py-12">
@@ -81,11 +81,11 @@ export default function Signup({ setSign, setUsernameSignIn }: SignProps) {
           <Input id="confirm-password" required type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
         </div>
         {error && <p className="text-red-500">{error}</p>}
-        <Button className="w-full" type="submit">
-          Criar Conta
+        <Button className="w-full">
+          {isLoadingSignup ? 'Criando...' : 'Criar Conta'}
         </Button>
         <HrSign text="Já possui uma conta?" />
-        <Button onClick={() => setSign(true)} className="w-full" variant="outline" type="submit">
+        <Button onClick={() => setSign(true)} className="w-full" variant="outline">
           Entrar
         </Button>
       </form>

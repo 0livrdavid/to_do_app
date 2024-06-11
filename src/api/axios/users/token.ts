@@ -5,7 +5,8 @@ export function setToken(token: string) {
 }
 
 export function getToken() {
-  return getCookie('token');
+  const token = getCookie('token');
+  return token ? token : null;
 }
 
 export function removeToken() {

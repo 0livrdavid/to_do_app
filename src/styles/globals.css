@@ -38,7 +38,7 @@
     --secondary: var(--fiord-300);
     --secondary-foreground: var(--fiord-950);
 
-    --destructive: var(--fiord-800);
+    --destructive: hsl(0, 60%, 50%);
     --destructive-foreground: var(--fiord-50);
 
     --ghost-background: transparent;

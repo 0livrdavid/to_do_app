@@ -8,11 +8,12 @@ export interface SigninResponse {
     msg: string;
     data: {
         user: {
+            id: string;
             username: string;
             name: string;
             email: string;
         };
         token: string;
-    };
+    } | null;
 }
 

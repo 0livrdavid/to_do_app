@@ -5,9 +5,11 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import HrSign from "@/components/hr_text"
 import React, { useState } from "react"
+import { useLoading } from '@rest-hooks/hooks';
 import { setToken } from "@/api/axios/users/token"
-import { SigninResponse } from "@/api/interface/signin"
+import { SigninResponse } from "@/api/interfaces/users/signin"
 import signin from "@/api/axios/users/signin"
+import { useRouter } from "next/navigation";
 
 interface SignInProps {
   setSign: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,25 +17,31 @@ interface SignInProps {
 }
 
 export default function Sign({ setSign, usernameSignIn }: SignInProps) {
+  const router = useRouter();
   const [username, setUsername] = useState(usernameSignIn);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
-  async function handleSignIn(e: React.FormEvent<HTMLFormElement>) {
+  
+  const [handleSignIn, isLoadingSignIn] = useLoading(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError('');
 
     const result: SigninResponse = await signin({
       username: username,
       password: password,
     });
     
-    if (result && result.success) {
-      console.log(result)
+    if (result && result.success && result.data) {
       setToken(result.data.token);
+      localStorage.setItem('user_id', result.data.user.id);
+      localStorage.setItem('user_name', result.data.user.name);
+      localStorage.setItem('user_username', result.data.user.username);
+      localStorage.setItem('user_email', result.data.user.email);
+      router.push('/dashboard');
     } else {
       setError(result.msg);
     }
-  }
+  });
 
   return (
     <div className="flex min-h-screen items-center justify-center">
@@ -46,19 +54,19 @@ export default function Sign({ setSign, usernameSignIn }: SignInProps) {
           <form onSubmit={handleSignIn} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
-              <Input id="username" placeholder="username" required type="text" value={username} defaultValue={username} onChange={(e) => setUsername(e.target.value)} />
+              <Input id="username" required type="text" value={username} defaultValue={username} onChange={(e) => setUsername(e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Senha</Label>
               <Input id="password" required type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             {error && <p className="text-red-500">{error}</p>}
-            <Button className="w-full" type="submit">
-              Entrar
+            <Button className="w-full">
+              {isLoadingSignIn ? 'Carregando...' : 'Entrar'}
             </Button>
             <HrSign text="ou" />
-            <Button onClick={() => setSign(false)} className="w-full" variant="outline" type="submit">
-              Crie uma Conta
+            <Button onClick={() => setSign(false)} className="w-full" variant="outline">
+              Criar uma Conta
             </Button>
           </form>
         </div>
