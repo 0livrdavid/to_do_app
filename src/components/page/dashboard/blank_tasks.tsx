@@ -34,15 +34,6 @@ export default function BlankTasksCategory({ task_category_id }: { task_category
   const [isOpen, setIsOpen] = useState(false);
 
   const [handleCreateTask, isLoadingCreateTask] = useLoading(async () => {
-    console.log({
-      title: title,
-      description: description,
-      deadline: deadline,
-      priority: priority,
-      user: Number(localStorage.getItem('user_id')),
-      task_category: task_category_id,
-    })
-
     const response: CreateTasksResponse = await create({
       title: title,
       description: description,
@@ -52,8 +43,7 @@ export default function BlankTasksCategory({ task_category_id }: { task_category
       task_category: task_category_id,
     }, getToken());
 
-    console.log(response);
-
+    window.location.reload();
     setIsOpen(false);
   });
 
@@ -100,20 +90,20 @@ export default function BlankTasksCategory({ task_category_id }: { task_category
                 id="deadline"
                 type="datetime-local"
                 placeholder="Prazo da Tarefa"
-                defaultValue={deadline}
+                defaultValue={new Date(deadline).toISOString().slice(0, 16)}
                 onChange={(e) => setDeadline(new Date(e.target.value).toISOString())}
               />
               <Label htmlFor="priority" className="sr-only">
                 Prioridade da Tarefa
               </Label>
-              <Select>
+              <Select defaultValue={priority}>
                 <SelectTrigger>
                   <SelectValue placeholder="Prioridade" />
                 </SelectTrigger>
                 <SelectContent className="bg-fiord-75">
-                  <SelectItem value="alta" onClick={() => setPriority('high')}>Alta</SelectItem>
-                  <SelectItem value="media" onClick={() => setPriority('medium')}>Média</SelectItem>
-                  <SelectItem value="baixa" onClick={() => setPriority('low')}>Baixa</SelectItem>
+                  <SelectItem value="high" onClick={() => setPriority('high')}>Alta</SelectItem>
+                  <SelectItem value="medium" onClick={() => setPriority('medium')}>Média</SelectItem>
+                  <SelectItem value="low" onClick={() => setPriority('low')}>Baixa</SelectItem>
                 </SelectContent>
               </Select>
             </form>

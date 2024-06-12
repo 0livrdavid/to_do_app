@@ -18,6 +18,7 @@ export default function HeaderComponent() {
 
         if (result && result.success) {
             removeToken()
+            localStorage.clear()
             router.push('/');
         } else {
             console.error(result.msg)
@@ -26,7 +27,7 @@ export default function HeaderComponent() {
 
     return (
         <div className='w-full h-full px-10 py-4'>
-            <header className="bg-fiord-800 text-fiord-100 rounded-lg shadow-md flex flex-row px-10 py-4 justify-between items-center">
+            <header className="bg-fiord-900 text-fiord-100 rounded-lg shadow-md flex flex-row px-10 py-4 justify-between items-center">
                 <h1 className="text-xl font-bold">To-Do App</h1>
                 <div className="flex flex-row items-center gap-4">
                     <p>{localStorage.getItem('user_name')}</p>
