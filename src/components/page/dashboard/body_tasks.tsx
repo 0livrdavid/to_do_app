@@ -46,19 +46,19 @@ export default function BodyTasksCategory(
   }, [tasks_category]);
 
   return (
-    <div className="w-full h-full flex flex-1 flex-row gap-4 overflow-x-visible">
+    <div className="w-screen h-screen flex flex-1 flex-row gap-4 mr-4">
       {tasks_category?.map((category: Category) => (
-        <div key={category.id} className="flex flex-col items-center min-w-72 h-full justify-start p-4 gap-4 border rounded-lg shadow">
-          <div className="flex flex-row w-full justify-between gap-2">
+        <div key={category.id} className="flex flex-col items-center min-w-72 h-full justify-start p-4 gap-4 border rounded-lg shadow bg-fiord-800">
+          <div className="flex flex-row w-full justify-between gap-2 text-fiord-50">
             <div>
-              <h3 className="text-lg font-semibold">{storeCategory[category.id]?.name || 'Loading...'}</h3>
-              <p className="text-sm text-gray-600">{storeCategory[category.id]?.description || 'Loading description...'}</p>
+              <h3 className="text-lg font-bold">{storeCategory[category.id]?.name || 'Loading...'}</h3>
+              <p className="text-sm text-fiord-500">{storeCategory[category.id]?.description || 'Loading description...'}</p>
             </div>
-            <div>
+            <div >
               <TaskCategory category={category} storeCategory={storeCategory} setStoreCategory={setStoreCategory} />
             </div>
           </div>
-          <div className="flex flex-col gap-4 w-full">
+          <div className="flex flex-col gap-4 w-full max-h-[calc(100vh-40vh)] overflow-y-auto">
             <Tasks task_category_id={category.id} filterStatusTasks={filterStatusTasks} filterPriorityTasks={filterPriorityTasks} />
           </div>
           <BlankTasks task_category_id={category.id} />

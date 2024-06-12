@@ -49,7 +49,7 @@ export default function BlankTasksCategory({ task_category_id }: { task_category
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild className="bg-fiord-75 rounded-lg border shadow-md w-64 h-14 flex items-center justify-center cursor-pointer">
+      <DialogTrigger asChild className="bg-fiord-100 rounded-lg border shadow-md w-64 h-14 flex items-center px-4 justify-center cursor-pointer">
         <p className="flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />

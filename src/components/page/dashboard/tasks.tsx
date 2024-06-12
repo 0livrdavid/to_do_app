@@ -52,7 +52,7 @@ export default function Tasks({
   }, [task_category_id, filterStatusTasks, filterPriorityTasks]);
 
   return (
-    <div className="flex flex-col gap-4 w-full overflow-y-auto">
+    <div className="flex flex-col gap-4">
       {tasks && tasks.map((task) => (
         <Task key={task.id} taskData={task} task_category_id={task_category_id}/>
       ))}
