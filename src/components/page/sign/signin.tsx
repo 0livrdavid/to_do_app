@@ -11,12 +11,13 @@ import { SigninResponse } from "@/api/interfaces/users/signin"
 import signin from "@/api/axios/users/signin"
 import { useRouter } from "next/navigation";
 
-interface SignInProps {
-  setSign: React.Dispatch<React.SetStateAction<boolean>>;
-  usernameSignIn: string;
-}
-
-export default function Sign({ setSign, usernameSignIn }: SignInProps) {
+export default function Sign({ 
+    sign, setSign, usernameSignIn, 
+  }: { 
+    sign: boolean,
+    setSign: (sign: boolean) => void,
+    usernameSignIn: string,
+  }) {
   const router = useRouter();
   const [username, setUsername] = useState(usernameSignIn);
   const [password, setPassword] = useState('');

@@ -9,12 +9,15 @@ import signup from "@/api/axios/users/signup";
 import { SignupResponse } from "@/api/interfaces/users/signup";
 import { useLoading } from '@rest-hooks/hooks';
 
-interface SignProps {
-  setSign: React.Dispatch<React.SetStateAction<boolean>>;
-  setUsernameSignIn: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export default function Signup({ setSign, setUsernameSignIn }: SignProps) {
+export default function Signup(
+  { 
+    sign, setSign, usernameSignIn, setUsernameSignIn}: 
+  { 
+    sign: boolean,
+    setSign: (sign: boolean) => void,
+    usernameSignIn: string,
+    setUsernameSignIn: (usernameSignIn: string) => void,
+  }) {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -41,13 +44,14 @@ export default function Signup({ setSign, setUsernameSignIn }: SignProps) {
   
       if (result && result.success) {
         setUsernameSignIn(username);
-        setSign(true);
       } else {
         setError(result.msg);
       }
     } catch (error) {
       setError(`Um erro ocorreu durante o cadastro: ${error}`);
     }
+
+    setSign(true);
   })
 
   return (

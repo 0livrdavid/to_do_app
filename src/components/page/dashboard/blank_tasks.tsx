@@ -96,14 +96,14 @@ export default function BlankTasksCategory({ task_category_id }: { task_category
               <Label htmlFor="priority" className="sr-only">
                 Prioridade da Tarefa
               </Label>
-              <Select defaultValue={priority}>
+              <Select defaultValue={priority} onValueChange={(value) => setPriority(value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Prioridade" />
                 </SelectTrigger>
                 <SelectContent className="bg-fiord-75">
-                  <SelectItem value="high" onClick={() => setPriority('high')}>Alta</SelectItem>
-                  <SelectItem value="medium" onClick={() => setPriority('medium')}>Média</SelectItem>
-                  <SelectItem value="low" onClick={() => setPriority('low')}>Baixa</SelectItem>
+                  <SelectItem value="high">Alta</SelectItem>
+                  <SelectItem value="medium">Média</SelectItem>
+                  <SelectItem value="low">Baixa</SelectItem>
                 </SelectContent>
               </Select>
             </form>

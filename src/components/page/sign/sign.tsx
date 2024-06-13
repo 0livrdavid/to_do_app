@@ -10,7 +10,7 @@ export default function Sign() {
 
   return (
     <div>
-      {sign ? <SignIn setSign={setSign} usernameSignIn={username} /> : <SignUp setSign={setSign} setUsernameSignIn={setUsername} />}
+      {sign ? <SignIn sign={sign} setSign={setSign} usernameSignIn={username} /> : <SignUp sign={sign} setSign={setSign} usernameSignIn={username} setUsernameSignIn={setUsername} />}
     </div>
   );
 }
